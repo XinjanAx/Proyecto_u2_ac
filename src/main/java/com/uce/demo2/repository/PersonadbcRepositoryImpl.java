@@ -28,7 +28,6 @@ public class PersonadbcRepositoryImpl implements IPersonadbcRepository {
 		// TODO Auto-generated method stub
 		this.jdbc.update("INSERT INTO persona(id, nombre, apellido) VALUES (?, ?, ?)",
 				new Object[] { persona.getId(), persona.getNombre(), persona.getApellido() });
-		System.out.println("logro entrar a la base de datos");
 	}
 
 	@Override

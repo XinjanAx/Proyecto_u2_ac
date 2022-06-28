@@ -7,16 +7,17 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.demo2.service.IPersonadbcService;
-import com.uce.demo2.to.Persona;
+
+import com.uce.demo3.colegio.service.IEstudianteService;
+import com.uce.demo3.colegio.to.Estudiante;
 
 @SpringBootApplication
 public class ProyectoU2AcApplication implements CommandLineRunner{
 
 	@Autowired
-	private IPersonadbcService iPersonadbcService;
+	private IEstudianteService estudianteService;
 	
-	Logger Logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
+	//Logger Logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU2AcApplication.class, args);
@@ -26,22 +27,32 @@ public class ProyectoU2AcApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		Persona p = new Persona();
-		p.setId(1);
-		p.setNombre("Alex");
-		p.setApellido("Condor");
 		
-		//this.iPersonadbcService.guardar(p);	
-		Persona p2 = new Persona();
-		p.setId(1);
-		p.setNombre("Andres");
-		p.setApellido("De'Nasared");
+		Estudiante e1 = new Estudiante();
+		e1.setId(36);
+		e1.setNombre("Alex");
+		e1.setApellido("Condor");
+		e1.setEdad(25);
+		e1.setIngreso("04-08-2019");
 		
-		//this.iPersonadbcService.actualizar(p2);
+		this.estudianteService.ingresar(e1);
+				
+		e1.setApellido("Guerron");
 		
-		//this.iPersonadbcService.eliminar(2);
+		//this.estudianteService.actualizar(e1);
+		
+		Estudiante e2 = new Estudiante();
+		e2.setId(95);
+		e2.setNombre("AndresSSS");
+		e2.setApellido("De'Nasared");
+		e2.setEdad(22);
+		e2.setIngreso("19-11-2020");
+		
+		//this.estudianteService.ingresar(e2);
+		
+		//this.estudianteService.eliminar(95);
 
-		Logger.info(this.iPersonadbcService.buscarPorId(1));
+		//Logger.info(this.estudianteService.buscarPorId(1));
 		
 	}
 
