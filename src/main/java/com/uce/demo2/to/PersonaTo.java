@@ -1,14 +1,14 @@
 package com.uce.demo2.to;
 
-public class Persona {
+public class PersonaTo {
 	
 	private int id;
     private String nombre;
     private String apellido;
 
-    public Persona() {}
+    public PersonaTo() {}
 
-    public Persona(int id, String nombre, String apellido) {
+    public PersonaTo(int id, String nombre, String apellido) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -36,7 +36,7 @@ public class Persona {
 
 	@Override
 	public String toString() {
-		return "Persona [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + "]";
+		return "\nPersonaTo [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + "]";
 	}
     
     

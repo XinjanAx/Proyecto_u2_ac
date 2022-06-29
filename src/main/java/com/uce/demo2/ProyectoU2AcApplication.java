@@ -7,17 +7,17 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.uce.demo2.modelo.Persona;
+import com.uce.demo2.service.IPersonajpaService;
 
-import com.uce.demo3.colegio.service.IEstudianteService;
-import com.uce.demo3.colegio.to.Estudiante;
 
 @SpringBootApplication
 public class ProyectoU2AcApplication implements CommandLineRunner{
 
 	@Autowired
-	private IEstudianteService estudianteService;
+	private IPersonajpaService iPersonajpaService;
 	
-	//Logger Logger = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
+	Logger Log = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU2AcApplication.class, args);
@@ -28,31 +28,19 @@ public class ProyectoU2AcApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		Estudiante e1 = new Estudiante();
-		e1.setId(36);
-		e1.setNombre("Alex");
-		e1.setApellido("Condor");
-		e1.setEdad(25);
-		e1.setIngreso("04-08-2019");
+		Persona p1 = new Persona();
+		p1.setId(312);
+		p1.setNombre("Andrea");
+		p1.setApellido("Bena");
 		
-		this.estudianteService.ingresar(e1);
-				
-		e1.setApellido("Guerron");
+		this.iPersonajpaService.guardar(p1);
+		Log.info(this.iPersonajpaService.buscarPorId(1));
 		
-		//this.estudianteService.actualizar(e1);
+		p1.setApellido("Benabides");
 		
-		Estudiante e2 = new Estudiante();
-		e2.setId(95);
-		e2.setNombre("AndresSSS");
-		e2.setApellido("De'Nasared");
-		e2.setEdad(22);
-		e2.setIngreso("19-11-2020");
-		
-		//this.estudianteService.ingresar(e2);
-		
-		//this.estudianteService.eliminar(95);
-
-		//Logger.info(this.estudianteService.buscarPorId(1));
+		this.iPersonajpaService.actualizar(p1);
+		Log.info(this.iPersonajpaService.buscarPorId(312));
+		this.iPersonajpaService.eliminar(1);
 		
 	}
 
