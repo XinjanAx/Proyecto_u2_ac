@@ -3,12 +3,12 @@ package com.uce.demo2.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.uce.demo2.modelo.Persona;
 import com.uce.demo2.repository.IPersonajpaRepository;
 
-@Repository
+@Service
 public class PersonajpaServiceImpl implements IPersonajpaService{
 
 	@Autowired

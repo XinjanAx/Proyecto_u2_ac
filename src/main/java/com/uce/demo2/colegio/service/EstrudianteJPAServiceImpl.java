@@ -1,17 +1,17 @@
-package com.uce.demo3.colegio.service;
+package com.uce.demo2.colegio.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.uce.demo3.colegio.repository.IEstudianteRepository;
-import com.uce.demo3.colegio.to.Estudiante;
+import com.uce.demo2.colegio.modelo.Estudiante;
+import com.uce.demo2.colegio.repository.IEstudianteJPARepository;
 
 @Service
-public class EstrudianteServiceImpl implements IEstudianteService{
+public class EstrudianteJPAServiceImpl implements IEstudianteJPAService{
 
 	@Autowired
-	private IEstudianteRepository estudianteRepository;
+	private IEstudianteJPARepository estudianteRepository;
 	
 	@Override
 	public void ingresar(Estudiante estudiante) {
@@ -22,7 +22,7 @@ public class EstrudianteServiceImpl implements IEstudianteService{
 	}
 
 	@Override
-	public Estudiante buscarPorId(int id) {
+	public Estudiante buscarPorId(Integer id) {
 		// TODO Auto-generated method stub
 		System.out.println("Se encontro el Estudiante: " +id);
 		return this.estudianteRepository.buscarPorId(id);
@@ -37,7 +37,7 @@ public class EstrudianteServiceImpl implements IEstudianteService{
 	}
 
 	@Override
-	public void eliminar(int id) {
+	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
 		this.estudianteRepository.eliminar(id);
 		System.out.println("Se elimino el Estudiante: " +id);

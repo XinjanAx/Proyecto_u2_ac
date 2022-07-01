@@ -9,7 +9,6 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.uce.demo2.modelo.Persona;
-import com.uce.demo2.to.PersonaTo;
 
 @Repository
 @Transactional
