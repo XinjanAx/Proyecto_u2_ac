@@ -7,8 +7,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.demo2.colegio.modelo.Estudiante;
 import com.uce.demo2.colegio.service.IEstudianteJPAService;
+import com.uce.demo2.modelo.Persona;
+import com.uce.demo2.service.IPersonajpaService;
 
 
 @SpringBootApplication
@@ -17,7 +18,7 @@ public class ProyectoU2AcApplication implements CommandLineRunner{
 	Logger Log = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 	
 	@Autowired
-	private IEstudianteJPAService estudianteJPAService;
+	private IPersonajpaService iPersonaJpaService;
 		
 	
 	public static void main(String[] args) {
@@ -29,27 +30,23 @@ public class ProyectoU2AcApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		Estudiante e1 = new Estudiante();
-		e1.setId(338);
-		e1.setNombre("Andrea");
-		e1.setApellido("Chang");
-		e1.setEdad(20);
-		e1.setFecha("31-10-2009");
-		
-		this.estudianteJPAService.ingresar(e1);
-		
-		Log.info(this.estudianteJPAService.buscarPorId(338));
-		
-		e1.setApellido("Chango");
-		
-		this.estudianteJPAService.actualizar(e1);
-		
 
-		Log.info(this.estudianteJPAService.buscarPorId(318));
-		
-		Log.info(this.estudianteJPAService.buscarPorId(745));
-		
-		this.estudianteJPAService.eliminar(745);
+        Persona p = new Persona();
+        //p.setId(65);
+        p.setNombre("Mike2");
+        p.setApellido("Wasauski");
+        //Guardar
+        this.iPersonaJpaService.guardar(p);
+
+        Persona p1 = new Persona();
+        p1.setNombre("Adam");
+        p1.setApellido("Maldonado");
+        //Actualizar
+        p1.setId(1);
+        //this.iPersonaJpaService.actualizar(p1);
+
+        //Eliminar
+        //this.iPersonaJpaService.eliminar(65);
 	
 	}
 }
