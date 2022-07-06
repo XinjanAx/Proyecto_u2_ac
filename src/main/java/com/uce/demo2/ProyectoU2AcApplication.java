@@ -28,25 +28,17 @@ public class ProyectoU2AcApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
-		
 
         Persona p = new Persona();
-        //p.setId(65);
-        p.setNombre("Mike2");
-        p.setApellido("Wasauski");
+        p.setNombre("Maria");
+        p.setApellido("De'Jerusalen");
+        p.setCedula("036846351");
+        p.setGenero("W");
         //Guardar
-        this.iPersonaJpaService.guardar(p);
-
-        Persona p1 = new Persona();
-        p1.setNombre("Adam");
-        p1.setApellido("Maldonado");
-        //Actualizar
-        p1.setId(1);
-        //this.iPersonaJpaService.actualizar(p1);
-
-        //Eliminar
-        //this.iPersonaJpaService.eliminar(65);
-	
+        //this.iPersonaJpaService.guardar(p);
+        
+        Log.info(this.iPersonaJpaService.buscarPorApellido("De'Jerusalen"));
+        
+        //Log.info(this.iPersonaJpaService.buscarPorCedula("036843158"));
 	}
 }

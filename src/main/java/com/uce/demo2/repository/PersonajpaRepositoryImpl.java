@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -47,6 +48,27 @@ public class PersonajpaRepositoryImpl implements IPersonajpaRepository{
 		Persona p = this.buscarPorId(id);
 		this.entityManager.remove(p);
 		
+	}
+
+	@Override
+	public Persona buscarPorCedula(String cedula) {
+		Query jpqlQuery = this.entityManager.createQuery("SELECT p FROM Persona p WHERE p.cedula = :VarCedula");
+		jpqlQuery.setParameter("VarCedula", cedula);
+	
+		return (Persona) jpqlQuery.getSingleResult();
+	}
+
+	@Override
+	public List<Persona> buscarPorApellido(String apellido) {
+		Query myQuery = this.entityManager.createQuery("SELECT p FROM Persona p WHERE p.apellido = :datoApellido");
+        myQuery.setParameter("datoApellido", apellido);
+        return myQuery.getResultList();
+	}
+
+	@Override
+	public List<Persona> buscarPorGenero(String genero) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

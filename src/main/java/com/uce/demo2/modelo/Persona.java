@@ -12,18 +12,24 @@ import javax.persistence.Table;
 @Table(name="persona")
 public class Persona {
 	
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "pers_id_seq")
-	@SequenceGenerator(name="pers_id_seq",sequenceName="pers_id_seq",allocationSize=1)
-	private Integer id;
-	
-	@Column(name = "nombre")
+    @Id
+    @Column(name = "pers_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pers_seq_id")
+    @SequenceGenerator(name = "pers_seq_id", sequenceName = "pers_seq_id", allocationSize = 1)
+    private Integer id;
+
+    @Column(name = "pers_nombre")
     private String nombre;
-	
-	@Column(name = "apellido")
+
+    @Column(name = "pers_apellido")
     private String apellido;
-	
+    
+    @Column(name = "pers_cedula")
+    private String cedula;
+    
+    @Column(name = "pers_genero")
+    private String genero;
+    
     
     //set get
     public Integer getId() {
@@ -44,10 +50,25 @@ public class Persona {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
+	public String getGenero() {
+		return genero;
+	}
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+	public String getCedula() {
+		return cedula;
+	}
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
+	}
 	@Override
 	public String toString() {
-		return "\nPersona [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + "]";
+		return "\nPersona " + id + ", nombre: " + nombre + " " + apellido + ", ci: " + cedula
+				+ ", g:" + genero;
 	}
+	
+
     
     
 }
