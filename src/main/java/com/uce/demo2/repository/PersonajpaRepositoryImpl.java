@@ -54,7 +54,6 @@ public class PersonajpaRepositoryImpl implements IPersonajpaRepository{
 	public Persona buscarPorCedula(String cedula) {
 		Query jpqlQuery = this.entityManager.createQuery("SELECT p FROM Persona p WHERE p.cedula = :VarCedula");
 		jpqlQuery.setParameter("VarCedula", cedula);
-	
 		return (Persona) jpqlQuery.getSingleResult();
 	}
 
@@ -67,8 +66,9 @@ public class PersonajpaRepositoryImpl implements IPersonajpaRepository{
 
 	@Override
 	public List<Persona> buscarPorGenero(String genero) {
-		// TODO Auto-generated method stub
-		return null;
+		Query myQuery2 = this.entityManager.createQuery("SELECT p FROM Persona p WHERE p.genero = :datoGenero");
+        myQuery2.setParameter("datoApellido", genero);
+        return myQuery2.getResultList();
 	}
 
 
