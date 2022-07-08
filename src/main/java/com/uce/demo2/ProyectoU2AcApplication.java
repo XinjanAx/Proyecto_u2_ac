@@ -34,11 +34,9 @@ public class ProyectoU2AcApplication implements CommandLineRunner{
         p.setApellido("De'Jerusalen");
         p.setCedula("036846351");
         p.setGenero("W");
-        //Guardar
-        //this.iPersonaJpaService.guardar(p);
         
-        Log.info(this.iPersonaJpaService.buscarPorApellido("De'Jerusalen"));
+        Log.info(this.iPersonaJpaService.buscarPorGenero("M"));
         
-        //Log.info(this.iPersonaJpaService.buscarPorCedula("036843158"));
+        
 	}
 }

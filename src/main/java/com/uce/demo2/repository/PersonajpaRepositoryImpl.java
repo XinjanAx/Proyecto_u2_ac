@@ -67,7 +67,7 @@ public class PersonajpaRepositoryImpl implements IPersonajpaRepository{
 	@Override
 	public List<Persona> buscarPorGenero(String genero) {
 		Query myQuery2 = this.entityManager.createQuery("SELECT p FROM Persona p WHERE p.genero = :datoGenero");
-        myQuery2.setParameter("datoApellido", genero);
+        myQuery2.setParameter("datoGenero", genero);
         return myQuery2.getResultList();
 	}
 
