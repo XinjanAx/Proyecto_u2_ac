@@ -41,7 +41,7 @@ public class PersonajpaServiceImpl implements IPersonajpaService{
 	@Override
 	public List<Persona> buscarTodos() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.iPersonajpaRepository.buscarTodos();
 	}
 
 	@Override
@@ -60,6 +60,18 @@ public class PersonajpaServiceImpl implements IPersonajpaService{
 	public List<Persona> buscarPorGenero(String genero) {
 		// TODO Auto-generated method stub
 		return this.iPersonajpaRepository.buscarPorGenero(genero);
+	}
+
+	@Override
+	public int actualizarPorApellido(String Apellido, String genero) {
+		// TODO Auto-generated method stub
+		return this.iPersonajpaRepository.actualizarPorApellido(Apellido, genero);
+	}
+
+	@Override
+	public int eliminarPorGenero(String genero) {
+		// TODO Auto-generated method stub
+		return this.iPersonajpaRepository.eliminarPorGenero(genero);
 	}
 
 }
