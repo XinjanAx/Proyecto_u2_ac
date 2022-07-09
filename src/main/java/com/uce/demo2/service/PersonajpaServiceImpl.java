@@ -62,4 +62,10 @@ public class PersonajpaServiceImpl implements IPersonajpaService{
 		return this.iPersonajpaRepository.buscarPorGenero(genero);
 	}
 
+	@Override
+	public int eliminarPorGenero(String genero) {
+		// TODO Auto-generated method stub
+		return this.iPersonajpaRepository.eliminarPorGenero(genero);
+	}
+
 }

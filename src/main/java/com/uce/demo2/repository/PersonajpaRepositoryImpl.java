@@ -72,5 +72,11 @@ public class PersonajpaRepositoryImpl implements IPersonajpaRepository{
 	}
 
 
+	@Override
+	public int eliminarPorGenero(String genero) {
+		Query myQuery = this.entityManager.createQuery("DELETE FROM Persona p	WHERE p.genero = :datoGenero");
+		myQuery.setParameter("datoGenero", genero);
+		return myQuery.executeUpdate();
+	}
 
 }
