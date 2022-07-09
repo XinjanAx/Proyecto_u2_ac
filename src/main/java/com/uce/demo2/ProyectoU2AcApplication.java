@@ -33,13 +33,10 @@ public class ProyectoU2AcApplication implements CommandLineRunner{
         p.setNombre("Maria");
         p.setApellido("De'Jerusalen");
         p.setCedula("036846351");
-        p.setGenero("W");
+        p.setGenero("W");           
         
-        
-        int resultado = this.iPersonaJpaService.actualizarPorApellido("Merixalde", "Undefinide");
-        Log.info("\n Personas actualiuzados: "+resultado);
-        
-        Log.info("\n Personas q fueron eliminados: "+this.iPersonaJpaService.eliminarPorGenero("NoBinarie"));
+        Log.info("\n"+this.iPersonaJpaService.buscarPorNombre("Maria"));
+        Log.info("\n"+this.iPersonaJpaService.buscarPorGenero("M"));
         
 	}
 }

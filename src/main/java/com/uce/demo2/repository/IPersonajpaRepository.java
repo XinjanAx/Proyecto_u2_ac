@@ -16,7 +16,7 @@ public interface IPersonajpaRepository {
     public Persona buscarPorCedula (String cedula);
     public List<Persona> buscarPorApellido (String apellido);
     public List<Persona> buscarPorGenero (String genero);
-    
+    public List<Persona> buscarPorNombre(String nombre);
     
     public int actualizarPorApellido (String Apellido,String genero);
     public int eliminarPorGenero (String genero);

@@ -71,6 +71,16 @@ public class PersonajpaRepositoryImpl implements IPersonajpaRepository{
         return myQuery2.getResultList();
 	}
 
+    @Override
+    public List<Persona> buscarPorNombre(String nombre) {
+        Query myQuery = this.entityManager.createQuery("SELECT p FROM Persona p WHERE p.nombre= :datonombre");
+        myQuery.setParameter("datonombre", nombre); //reemplaza datoapellido por el apellido del parametro
+
+        return myQuery.getResultList();
+    }
+	
+	
+	
 	@Override
 	public int actualizarPorApellido(String apellido,String genero) {
 
