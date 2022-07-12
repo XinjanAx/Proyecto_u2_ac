@@ -24,7 +24,8 @@ public class PersonajpaRepositoryImpl implements IPersonajpaRepository{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+//no se puede usar con un id generado en la DB
 	@Override
 	public Persona buscarPorId(Integer id) {
 		// TODO Auto-generated method stub
@@ -37,12 +38,14 @@ public class PersonajpaRepositoryImpl implements IPersonajpaRepository{
 		this.entityManager.persist(persona);
 	}
 
+//no se puede usar con un id generado en la DB
 	@Override
 	public void actualizar(Persona persona) {
 		// TODO Auto-generated method stub
 		this.entityManager.merge(persona);
 	}
-
+	
+//no se puede usar con un id generado en la DB
 	@Override
 	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
@@ -53,6 +56,7 @@ public class PersonajpaRepositoryImpl implements IPersonajpaRepository{
 	
 	
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	
 	@Override
 	public Persona buscarPorCedula(String cedula) {
 		Query jpqlQuery = this.entityManager.createQuery("SELECT p FROM Persona p WHERE p.cedula = :VarCedula");
@@ -83,6 +87,8 @@ public class PersonajpaRepositoryImpl implements IPersonajpaRepository{
 	}
 	
 //------------------------------------------------------------------------------------------
+	
+	
 	@Override
 	public List<Persona> buscarPorApellido(String apellido) {
 		Query myQuery = this.entityManager.createQuery("SELECT p FROM Persona p WHERE p.apellido = :datoApellido");
@@ -103,6 +109,7 @@ public class PersonajpaRepositoryImpl implements IPersonajpaRepository{
         myQuery.setParameter("datonombre", nombre); //reemplaza datoapellido por el apellido del parametro
         return myQuery.getResultList();
     }
+    
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	@Override
 	public List<Persona> buscarPorNombreApellido(String nombre, String apellido) {
@@ -112,7 +119,7 @@ public class PersonajpaRepositoryImpl implements IPersonajpaRepository{
 		return myTypedQuery.getResultList();
 	}
 //-----------------------------------------------------------
-	
+
 	@Override
 	public int actualizarPorApellido(String apellido,String genero) {
 
@@ -128,6 +135,4 @@ public class PersonajpaRepositoryImpl implements IPersonajpaRepository{
 		myQuery.setParameter("datoGenero", genero);
 		return myQuery.executeUpdate();
 	}
-
-
 }

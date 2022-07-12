@@ -1,5 +1,7 @@
 package com.uce.demo2;
 
+import java.time.LocalDateTime;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +9,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.demo2.modelo.Persona;
-import com.uce.demo2.service.IPersonajpaService;
+import com.uce.demo2.colegio.modelo.Estudiante;
+import com.uce.demo2.colegio.service.IEstudianteJPAService;
 
 
 @SpringBootApplication
@@ -17,7 +19,7 @@ public class ProyectoU2AcApplication implements CommandLineRunner{
 	Logger Log = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 	
 	@Autowired
-	private IPersonajpaService iPersonaJpaService;
+	private IEstudianteJPAService estudianteJPAService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU2AcApplication.class, args);
@@ -26,29 +28,42 @@ public class ProyectoU2AcApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
+		
+		
+		Estudiante e1 = new Estudiante();
 
-		Persona p = new Persona();
-		p.setNombre("Jose");
-	    p.setApellido("De'Jerusalen");
-	    p.setCedula("04684211");
-	    p.setGenero("Undefinide");
-	    
-	    //this.iPersonaJpaService.guardar(p);
-	    
-	    //1 TypedQuery
-        Persona perTyped = this.iPersonaJpaService.buscarPorCedulaTyped("036846351");
-        Log.info("\nPersona Typed: " + perTyped);
+		e1.setNombre("Mauricio");
+		e1.setApellido("Merardo");
+		e1.setCedula("1788468542");
+		e1.setEdad(25);
+		e1.setGratuidad(false);
+		e1.setFecha(LocalDateTime.now());
+		
+		//this.estudianteJPAService.ingresar(e1);
+				
+		
+		Estudiante e2 = new Estudiante();
+		e2.setNombre("Izma");
+		e2.setApellido("Guadalupe");
+		e2.setCedula("0477655413");
+		e2.setEdad(27);
+		e1.setGratuidad(false);
+		e2.setFecha(LocalDateTime.of(2017, 06, 15, 22, 14));
+		
+		//this.estudianteJPAService.ingresar(e2);
+		
+		Log.info("\nSe encontro al: "+this.estudianteJPAService.buscarPorCedula("1722341354"));
+		
+		Log.info("\nEstudiantes por edades: "+this.estudianteJPAService.listaEdadesDecendentes());
 
-        //2 NamedQuery
-        Persona perNamed = this.iPersonaJpaService.buscarPorCedulaNamed("17348882349");
-        Log.info("\nPersona Named: " + perNamed);
+		Log.info("\nEstudiantes con gratuidad: "+this.estudianteJPAService.listaEstudiantesGratuitos());
 
-        //3 TypedQuery y NamedQuery
-        Persona perTypedNamed = this.iPersonaJpaService.buscarPorCedulaTypedNamed("14748134");
-        Log.info("\nPersona TypedNamed: " + perTypedNamed);
-	    
-        //4 Varios NamedQuery
-        
-        Log.info("\nPersonas con mismo nombre y apellidos"+this.iPersonaJpaService.buscarPorNombreApellido("Jose", "De'Jerusalen"));
+		Log.info("\nEstudiante/s : "+this.estudianteJPAService.buscarPorNombreApellido("Alex", "Guerron"));
+
+		Log.info("\nSe encontro CON TypedNamed al: "+this.estudianteJPAService.buscarPorCedulaTypedNamed("1798465413"));
+		
+		Integer edad = 25;
+		Log.info("\nEstudiantes menores de " + edad + " años:" +this.estudianteJPAService.listaEstudiantesGratuitosMenoresA(edad));
+		
 	}
 }
