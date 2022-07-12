@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -49,7 +50,9 @@ public class PersonajpaRepositoryImpl implements IPersonajpaRepository{
 		this.entityManager.remove(p);
 		
 	}
-
+	
+	
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	@Override
 	public Persona buscarPorCedula(String cedula) {
 		Query jpqlQuery = this.entityManager.createQuery("SELECT p FROM Persona p WHERE p.cedula = :VarCedula");
@@ -57,6 +60,29 @@ public class PersonajpaRepositoryImpl implements IPersonajpaRepository{
 		return (Persona) jpqlQuery.getSingleResult();
 	}
 
+	@Override
+	public Persona buscarPorCedulaTyped(String cedula) {
+		TypedQuery<Persona> myTypedQuery = this.entityManager.createQuery("SELECT p FROM Persona p WHERE p.cedula = :datoCedula",Persona.class);
+		myTypedQuery.setParameter("datoCedula", cedula);
+		return myTypedQuery.getSingleResult();
+	}
+	
+	@Override
+	public Persona buscarPorCedulaNamed(String cedula) {
+		
+		Query myQuery =this.entityManager.createNamedQuery("Persona.buscarPorCedula");//namedQuiery q trabaja con un Query
+		myQuery.setParameter("datoCedula", cedula);
+		return (Persona) myQuery.getSingleResult();
+	}
+	
+	@Override
+	public Persona buscarPorCedulaTypedNamed(String cedula) {//combinacion de los 2
+		TypedQuery<Persona> myTypedQuery = this.entityManager.createNamedQuery("Persona.buscarPorCedula",Persona.class);
+		myTypedQuery.setParameter("datoCedula", cedula);
+		return myTypedQuery.getSingleResult();
+	}
+	
+//------------------------------------------------------------------------------------------
 	@Override
 	public List<Persona> buscarPorApellido(String apellido) {
 		Query myQuery = this.entityManager.createQuery("SELECT p FROM Persona p WHERE p.apellido = :datoApellido");
@@ -75,11 +101,17 @@ public class PersonajpaRepositoryImpl implements IPersonajpaRepository{
     public List<Persona> buscarPorNombre(String nombre) {
         Query myQuery = this.entityManager.createQuery("SELECT p FROM Persona p WHERE p.nombre= :datonombre");
         myQuery.setParameter("datonombre", nombre); //reemplaza datoapellido por el apellido del parametro
-
         return myQuery.getResultList();
     }
-	
-	
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	@Override
+	public List<Persona> buscarPorNombreApellido(String nombre, String apellido) {
+		TypedQuery<Persona> myTypedQuery = this.entityManager.createNamedQuery("Persona.buscarPorNombreApellido",Persona.class);
+		myTypedQuery.setParameter("datoNombre", nombre);
+		myTypedQuery.setParameter("datoApellido", apellido);
+		return myTypedQuery.getResultList();
+	}
+//-----------------------------------------------------------
 	
 	@Override
 	public int actualizarPorApellido(String apellido,String genero) {
@@ -96,7 +128,6 @@ public class PersonajpaRepositoryImpl implements IPersonajpaRepository{
 		myQuery.setParameter("datoGenero", genero);
 		return myQuery.executeUpdate();
 	}
-
 
 
 }

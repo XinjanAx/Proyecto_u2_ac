@@ -11,9 +11,18 @@ public interface IPersonajpaService {
 	public void actualizar(Persona persona);
 	public void eliminar (Integer id);
 	public List <Persona> buscarTodos();
-	public Persona buscarPorCedula (String cedula);
+	
+    public Persona buscarPorCedula (String cedula);
+    public Persona buscarPorCedulaTyped (String cedula);
+    public Persona buscarPorCedulaNamed (String cedula);
+    public Persona buscarPorCedulaTypedNamed(String cedula);
+	
 	public List<Persona> buscarPorNombre(String nombre);
     public List<Persona> buscarPorApellido (String apellido);
+    
+    public List<Persona> buscarPorNombreApellido(String nombre,String apellido);
+
+    
     public List<Persona> buscarPorGenero (String genero);
     
     public int actualizarPorApellido (String Apellido,String genero);
