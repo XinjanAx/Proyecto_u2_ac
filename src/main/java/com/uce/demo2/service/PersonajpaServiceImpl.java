@@ -104,6 +104,18 @@ public class PersonajpaServiceImpl implements IPersonajpaService{
 		return this.iPersonajpaRepository.buscarPorNombreApellido(nombre, apellido);
 	}
 
+	@Override
+	public Persona buscarPorCedulaNative(String cedula) {
+		// TODO Auto-generated method stub
+		return this.iPersonajpaRepository.buscarPorCedulaNamed(cedula);
+	}
+
+	@Override
+	public Persona buscarPorCedulaNamedNative(String cedula) {
+		// TODO Auto-generated method stub
+		return this.iPersonajpaRepository.buscarPorCedulaNamedNative(cedula);
+	}
+
 
 
 }

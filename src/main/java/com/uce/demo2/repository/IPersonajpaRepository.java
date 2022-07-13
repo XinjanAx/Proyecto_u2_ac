@@ -27,4 +27,10 @@ public interface IPersonajpaRepository {
     
     public int actualizarPorApellido (String Apellido,String genero);
     public int eliminarPorGenero (String genero);
+    
+    public Persona buscarPorCedulaNative(String cedula);
+    public Persona buscarPorCedulaNamedNative(String cedula);
+    
+    public Persona buscarPorCedulaCriteriaApi(String cedila);
+    
 }

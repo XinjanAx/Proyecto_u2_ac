@@ -27,4 +27,8 @@ public interface IPersonajpaService {
     
     public int actualizarPorApellido (String Apellido,String genero);
     public int eliminarPorGenero (String genero);
+    
+    public Persona buscarPorCedulaNative(String cedula);
+    public Persona buscarPorCedulaNamedNative(String cedula);
+
 }
