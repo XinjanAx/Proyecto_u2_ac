@@ -35,7 +35,7 @@ public class ProyectoU2AcApplication implements CommandLineRunner{
         Log.info("\nEstudiantes con gratuidad con Native" + this.estudianteJPAService.listaEstudiantesGratuitosNative());
         
         //NamedNative---------------------
-        //Log.info("\nEdades Desendentes con NamedNative" + this.estudianteJPAService.listaEdadesDecendentesNamedNative());
+        Log.info("\nEdades Desendentes con NamedNative" + this.estudianteJPAService.listaEdadesDecendentesNamedNative());
         
         Log.info("\nEstudiantes con gratuidad menores A: con NamedNative" + this.estudianteJPAService.listaEstudiantesGratuitosMenoresANamedNative(25));
 

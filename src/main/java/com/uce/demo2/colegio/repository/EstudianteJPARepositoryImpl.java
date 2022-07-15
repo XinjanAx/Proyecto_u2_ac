@@ -65,7 +65,7 @@ public class EstudianteJPARepositoryImpl implements IEstudianteJPARepository{
 	}
 	@Override
 	public List<Estudiante> listaEdadesDecendentesNamedNative() {
-		Query myQuery =this.entityManager.createNativeQuery("Estudiante.edadesDecendentes",Estudiante.class);
+		Query myQuery =this.entityManager.createNamedQuery("Estudiante.edadesDecendentes",Estudiante.class);
 		return myQuery.getResultList();   //---------------
 	}
 
