@@ -50,41 +50,37 @@ public class EstrudianteJPAServiceImpl implements IEstudianteJPAService{
 		Log.info("\nConectando a la base de datos...");
 		this.estudianteRepository.eliminar(id);
 	}
-
+	
 	@Override
-	public Estudiante buscarPorCedula(String cedula) {
+	public Estudiante buscarPorCedulaNative(String cedula) {
 		// TODO Auto-generated method stub
-		return this.estudianteRepository.buscarPorCedula(cedula);
+		Log.info("\nConectando a la base de datos...");
+
+		return this.estudianteRepository.buscarPorCedulaNative(cedula);
 	}
 
 	@Override
-	public List<Estudiante> listaEdadesDecendentes() {
+	public List<Estudiante> listaEstudiantesGratuitosNative() {
 		// TODO Auto-generated method stub
-		return this.estudianteRepository.listaEdadesDecendentes();
+		Log.info("\nConectando a la base de datos...");
+
+		return this.estudianteRepository.listaEstudiantesGratuitosNative();
+	}
+	
+	@Override
+	public List<Estudiante> listaEdadesDecendentesNamedNative() {
+		// TODO Auto-generated method stub
+		Log.info("\nConectando a la base de datos...");
+		return this.estudianteRepository.listaEdadesDecendentesNamedNative();
 	}
 
 	@Override
-	public List<Estudiante> listaEstudiantesGratuitos() {
+	public List<Estudiante> listaEstudiantesGratuitosMenoresANamedNative(Integer edad) {
 		// TODO Auto-generated method stub
-		return this.estudianteRepository.listaEstudiantesGratuitos();
+		Log.info("\nConectando a la base de datos...");
+		return this.estudianteRepository.listaEstudiantesGratuitosMenoresANamedNative(edad);
 	}
 
-	@Override
-	public List<Estudiante> buscarPorNombreApellido(String nombre, String apellido) {
-		// TODO Auto-generated method stub
-		return this.estudianteRepository.buscarPorNombreApellido(nombre, apellido);
-	}
 
-	@Override
-	public Estudiante buscarPorCedulaTypedNamed(String cedula) {
-		// TODO Auto-generated method stub
-		return this.estudianteRepository.buscarPorCedulaTypedNamed(cedula);
-	}
-
-	@Override
-	public List<Estudiante> listaEstudiantesGratuitosMenoresA(Integer edad) {
-		// TODO Auto-generated method stub
-		return this.estudianteRepository.listaEstudiantesGratuitosMenoresA(edad);
-	}
 
 }

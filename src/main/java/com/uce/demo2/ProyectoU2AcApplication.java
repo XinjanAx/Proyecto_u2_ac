@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.uce.demo2.colegio.service.IEstudianteJPAService;
 import com.uce.demo2.modelo.Persona;
 import com.uce.demo2.service.IPersonajpaService;
 
@@ -18,7 +19,7 @@ public class ProyectoU2AcApplication implements CommandLineRunner{
 	Logger Log = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 	
 	@Autowired
-	private IPersonajpaService iPersonajpaService;
+	private IEstudianteJPAService estudianteJPAService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU2AcApplication.class, args);
@@ -28,19 +29,15 @@ public class ProyectoU2AcApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Persona p = new Persona();
-
-        p.setNombre("Lucas");
-        p.setApellido("Guaranda");
-        p.setCedula("0696699696");
-        p.setGenero("M");
+		//Native---------------------
+        Log.info("\nBuscado por cedula con Native" + this.estudianteJPAService.buscarPorCedulaNative("1722341354"));
         
-        // Guardar
-        //this.iPersonajpaService.guardar(p);
+        Log.info("\nEstudiantes con gratuidad con Native" + this.estudianteJPAService.listaEstudiantesGratuitosNative());
         
-        Log.info("\nBuscado con Native" + iPersonajpaService.buscarPorCedulaNative("0696699696"));
-        Log.info("\nBuscado con Named/Typed Native" + iPersonajpaService.buscarPorCedulaNamedNative("17348882349"));
-       
+        //NamedNative---------------------
+        //Log.info("\nEdades Desendentes con NamedNative" + this.estudianteJPAService.listaEdadesDecendentesNamedNative());
+        
+        Log.info("\nEstudiantes con gratuidad menores A: con NamedNative" + this.estudianteJPAService.listaEstudiantesGratuitosMenoresANamedNative(25));
 
 	}
 }

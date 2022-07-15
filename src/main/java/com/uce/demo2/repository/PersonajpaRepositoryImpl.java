@@ -57,6 +57,22 @@ public class PersonajpaRepositoryImpl implements IPersonajpaRepository{
 		
 	}
 	
+	@Override
+	public int actualizarPorApellido(String apellido,String genero) {
+
+		Query myQuery = this.entityManager.createQuery("UPDATE Persona p SET p.genero = :datoGenero WHERE p.apellido = :datoApellido ");
+		myQuery.setParameter("datoGenero", genero);
+		myQuery.setParameter("datoApellido", apellido);
+		return myQuery.executeUpdate();
+	}
+
+	@Override
+	public int eliminarPorGenero(String genero) {
+		Query myQuery = this.entityManager.createQuery("DELETE FROM Persona p	WHERE p.genero = :datoGenero");
+		myQuery.setParameter("datoGenero", genero);
+		return myQuery.executeUpdate();
+	}
+	
 	
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	
@@ -122,23 +138,6 @@ public class PersonajpaRepositoryImpl implements IPersonajpaRepository{
 		return myTypedQuery.getResultList();
 	}
 //-----------------------------------------------------------
-
-	@Override
-	public int actualizarPorApellido(String apellido,String genero) {
-
-		Query myQuery = this.entityManager.createQuery("UPDATE Persona p SET p.genero = :datoGenero WHERE p.apellido = :datoApellido ");
-		myQuery.setParameter("datoGenero", genero);
-		myQuery.setParameter("datoApellido", apellido);
-		return myQuery.executeUpdate();
-	}
-
-	@Override
-	public int eliminarPorGenero(String genero) {
-		Query myQuery = this.entityManager.createQuery("DELETE FROM Persona p	WHERE p.genero = :datoGenero");
-		myQuery.setParameter("datoGenero", genero);
-		return myQuery.executeUpdate();
-	}
-
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	
 	@Override
@@ -146,7 +145,7 @@ public class PersonajpaRepositoryImpl implements IPersonajpaRepository{
 		Query myQuery = this.entityManager.createNativeQuery("SELECT * FROM persona  WHERE pers_cedula = :datoCedula",Persona.class);
 		myQuery.setParameter("datoCedula", cedula);
 		return (Persona) myQuery.getSingleResult();
-	}
+	}								//-------------ojo con los create del entityManager-------
 
 	@Override
 	public Persona buscarPorCedulaNamedNative(String cedula) {

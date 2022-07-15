@@ -14,11 +14,10 @@ public interface IEstudianteJPARepository {
 	public void actualizar(Estudiante estudiante);
 	public void eliminar (Integer id);
 	
-	public Estudiante buscarPorCedula(String cedula);
-	public List<Estudiante> listaEdadesDecendentes();
-	public List<Estudiante> listaEstudiantesGratuitos();
-    public List<Estudiante> buscarPorNombreApellido(String nombre,String apellido);
-    public Estudiante buscarPorCedulaTypedNamed(String cedula);
-	public List<Estudiante> listaEstudiantesGratuitosMenoresA(Integer edad);
-    
+	public Estudiante buscarPorCedulaNative(String cedula);
+	public List<Estudiante> listaEstudiantesGratuitosNative();
+	
+	public List<Estudiante> listaEdadesDecendentesNamedNative();
+	public List<Estudiante> listaEstudiantesGratuitosMenoresANamedNative(Integer edad);
+	   
 }

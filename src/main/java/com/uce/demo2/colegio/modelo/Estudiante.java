@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -14,14 +15,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name="estudiante")
 
-@NamedQuery(name = "Estudiante.buscarPorCedula", 
-			query = "SELECT e FROM Estudiante e WHERE e.cedula = :datoCedula")
+@NamedNativeQuery(name = "Estudiante.edadesDecendentes", 
+			query = "SELECT * FROM estudiante ORDER BY est_edad desc",
+			resultClass = Estudiante.class)
 
-@NamedQuery(name = "Estudiante.edadesDecendentes", 
-			query = "SELECT e FROM Estudiante e ORDER BY e.edad desc")
-
-@NamedQuery(name = "Estudiante.gratuidadPorEdadesMenoresA",
-			query ="SELECT e FROM Estudiante e WHERE e.gratuidad = true AND e.edad < :datoEdad")
+@NamedNativeQuery(name = "Estudiante.gratuidadPorEdadesMenoresA",
+			query ="SELECT * FROM estudiante  WHERE est_gratuidad = true AND est_edad < :datoEdad ORDER BY est_edad asc",
+			resultClass = Estudiante.class)
 
 public class Estudiante {
 	
