@@ -19,7 +19,7 @@ public class ProyectoU2AcApplication implements CommandLineRunner{
 	Logger Log = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 	
 	@Autowired
-	private IEstudianteJPAService estudianteJPAService;
+	private IPersonajpaService iPersonajpaService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU2AcApplication.class, args);
@@ -29,15 +29,10 @@ public class ProyectoU2AcApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		//Native---------------------
-        Log.info("\nBuscado por cedula con Native" + this.estudianteJPAService.buscarPorCedulaNative("1722341354"));
-        
-        Log.info("\nEstudiantes con gratuidad con Native" + this.estudianteJPAService.listaEstudiantesGratuitosNative());
-        
-        //NamedNative---------------------
-        Log.info("\nEdades Desendentes con NamedNative" + this.estudianteJPAService.listaEdadesDecendentesNamedNative());
-        
-        Log.info("\nEstudiantes con gratuidad menores A: con NamedNative" + this.estudianteJPAService.listaEstudiantesGratuitosMenoresANamedNative(25));
-
+		Log.info("\nPersona CriteriaAPI"+this.iPersonajpaService.buscarPorCedulaCriteriaApi("17348882349"));
+		
+		
+		Log.info("\nPersona Dinamica"+this.iPersonajpaService.busquedaDinamica("Yisus", "De'Jerusalen", "F"));
+		
 	}
 }

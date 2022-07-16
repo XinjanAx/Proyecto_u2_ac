@@ -31,6 +31,6 @@ public interface IPersonajpaRepository {
     public Persona buscarPorCedulaNative(String cedula);
     public Persona buscarPorCedulaNamedNative(String cedula);
     
-    public Persona buscarPorCedulaCriteriaApi(String cedila);
-    
+    public Persona buscarPorCedulaCriteriaApi(String cedila); 
+    public List<Persona> busquedaDinamica(String nombre,String apellido, String genero);
 }
