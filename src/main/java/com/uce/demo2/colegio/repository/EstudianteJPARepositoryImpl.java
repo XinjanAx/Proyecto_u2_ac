@@ -15,7 +15,11 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.uce.demo2.colegio.modelo.Estudiante;
+import com.uce.demo2.colegio.modelo.EstudianteGroupGratuidad;
+import com.uce.demo2.colegio.modelo.EstudianteSencillo;
 import com.uce.demo2.modelo.Persona;
+import com.uce.demo2.modelo.PersonaContadorGenero;
+import com.uce.demo2.modelo.PersonaSencilla;
 
 
 @Repository
@@ -26,9 +30,24 @@ public class EstudianteJPARepositoryImpl implements IEstudianteJPARepository{
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+	
 	@Override
-	public List<Estudiante> busquedaDinamicaGratuidad(String nombre, String apellido, String genero) {
+	public EstudianteSencillo busquedaCiGratuidad(String cedula) {
 		// TODO Auto-generated method stub
-		return null;
-	}	
+		TypedQuery<EstudianteSencillo> myQuery = this.entityManager.createQuery(
+							"SELECT NEW com.uce.demo2.colegio.modelo.EstudianteSencillo(e.cedula, e.gratuidad) FROM Estudiante e WHERE e.cedula = :datoCedula",EstudianteSencillo.class);
+		myQuery.setParameter("datoCedula", cedula);
+		return myQuery.getSingleResult();
+	}
+
+
+	@Override
+	public List<EstudianteGroupGratuidad> cantidadGratuitos() {
+		// TODO Auto-generated method stub
+		TypedQuery<EstudianteGroupGratuidad> myQuery = this.entityManager.createQuery(
+				"SELECT NEW com.uce.demo2.colegio.modelo.EstudianteGroupGratuidad(e.gratuidad, COUNT(e.gratuidad)) FROM Estudiante e GROUP BY e.gratuidad",EstudianteGroupGratuidad.class);
+		return myQuery.getResultList();
+	}
+	
+	
 }

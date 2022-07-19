@@ -39,7 +39,4 @@ public class PersonaContadorGenero implements Serializable{
 		this.genero = genero;
 		this.contador = contador;
 	}
-	
-	
-
 }

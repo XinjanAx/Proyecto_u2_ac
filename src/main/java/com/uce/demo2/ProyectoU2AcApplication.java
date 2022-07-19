@@ -20,7 +20,7 @@ public class ProyectoU2AcApplication implements CommandLineRunner{
 	Logger Log = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 	
 	@Autowired
-	private IPersonajpaService iPersonajpaService;
+	private IEstudianteJPAService estudianteJPAService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU2AcApplication.class, args);
@@ -31,9 +31,9 @@ public class ProyectoU2AcApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 
 		
-		//Log.info(this.iPersonajpaService.buscarPorApellidoPersonaS("Wasauski"));
+		Log.info(this.estudianteJPAService.BusquedaCiGratuidad("1722341354"));
 		
-		Log.info(this.iPersonajpaService.buscarCantidadPorGenero());
+		Log.info(this.estudianteJPAService.cantidadGratuitos());
 
 		
 	}
