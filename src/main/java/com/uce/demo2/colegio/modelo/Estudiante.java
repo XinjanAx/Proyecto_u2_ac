@@ -15,14 +15,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name="estudiante")
 
-@NamedNativeQuery(name = "Estudiante.edadesDecendentes", 
-			query = "SELECT * FROM estudiante ORDER BY est_edad desc",
-			resultClass = Estudiante.class)
-
-@NamedNativeQuery(name = "Estudiante.gratuidadPorEdadesMenoresA",
-			query ="SELECT * FROM estudiante  WHERE est_gratuidad = true AND est_edad < :datoEdad ORDER BY est_edad asc",
-			resultClass = Estudiante.class)
-
 public class Estudiante {
 	
 	@Id

@@ -3,6 +3,8 @@ package com.uce.demo2.service;
 import java.util.List;
 
 import com.uce.demo2.modelo.Persona;
+import com.uce.demo2.modelo.PersonaContadorGenero;
+import com.uce.demo2.modelo.PersonaSencilla;
 
 public interface IPersonajpaService {
 
@@ -33,5 +35,8 @@ public interface IPersonajpaService {
 
     public Persona buscarPorCedulaCriteriaApi(String cedila);
     public List<Persona>  busquedaDinamica(String nombre,String apellido, String genero);
+    
+    public List<PersonaSencilla> buscarPorApellidoPersonaS (String apellido);
+	public List<PersonaContadorGenero> buscarCantidadPorGenero();
 
 }

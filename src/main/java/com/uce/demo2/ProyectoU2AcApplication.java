@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.uce.demo2.colegio.service.IEstudianteJPAService;
 import com.uce.demo2.modelo.Persona;
+import com.uce.demo2.modelo.PersonaSencilla;
 import com.uce.demo2.service.IPersonajpaService;
 
 
@@ -28,11 +29,12 @@ public class ProyectoU2AcApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
+
 		
-		Log.info("\nPersona CriteriaAPI"+this.iPersonajpaService.buscarPorCedulaCriteriaApi("17348882349"));
+		//Log.info(this.iPersonajpaService.buscarPorApellidoPersonaS("Wasauski"));
 		
-		
-		Log.info("\nPersona Dinamica"+this.iPersonajpaService.busquedaDinamica("Yisus", "De'Jerusalen", "F"));
+		Log.info(this.iPersonajpaService.buscarCantidadPorGenero());
+
 		
 	}
 }

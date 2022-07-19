@@ -20,65 +20,11 @@ public class EstrudianteJPAServiceImpl implements IEstudianteJPAService{
 	
 	Logger Log = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 
-	
 	@Override
-	public void ingresar(Estudiante estudiante) {
+	public List<Estudiante> busquedaDinamicaGratuidad(String nombre, String apellido, String genero) {
 		// TODO Auto-generated method stub
 		Log.info("\nConectando a la base de datos...");
-		this.estudianteRepository.ingresar(estudiante);
-		
-	}
-
-	@Override
-	public Estudiante buscarPorId(Integer id) {
-		// TODO Auto-generated method stub
-		Log.info("\nConectando a la base de datos...");
-		return this.estudianteRepository.buscarPorId(id);
-		
-	}
-
-	@Override
-	public void actualizar(Estudiante estudiante) {
-		// TODO Auto-generated method stub
-		Log.info("\nConectando a la base de datos...");
-		this.estudianteRepository.actualizar(estudiante);
-	}
-
-	@Override
-	public void eliminar(Integer id) {
-		// TODO Auto-generated method stub
-		Log.info("\nConectando a la base de datos...");
-		this.estudianteRepository.eliminar(id);
-	}
-	
-	@Override
-	public Estudiante buscarPorCedulaNative(String cedula) {
-		// TODO Auto-generated method stub
-		Log.info("\nConectando a la base de datos...");
-
-		return this.estudianteRepository.buscarPorCedulaNative(cedula);
-	}
-
-	@Override
-	public List<Estudiante> listaEstudiantesGratuitosNative() {
-		// TODO Auto-generated method stub
-		Log.info("\nConectando a la base de datos...");
-
-		return this.estudianteRepository.listaEstudiantesGratuitosNative();
-	}
-	
-	@Override
-	public List<Estudiante> listaEdadesDecendentesNamedNative() {
-		// TODO Auto-generated method stub
-		Log.info("\nConectando a la base de datos...");
-		return this.estudianteRepository.listaEdadesDecendentesNamedNative();
-	}
-
-	@Override
-	public List<Estudiante> listaEstudiantesGratuitosMenoresANamedNative(Integer edad) {
-		// TODO Auto-generated method stub
-		Log.info("\nConectando a la base de datos...");
-		return this.estudianteRepository.listaEstudiantesGratuitosMenoresANamedNative(edad);
+		return null;
 	}
 
 

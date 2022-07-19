@@ -15,6 +15,8 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.uce.demo2.modelo.Persona;
+import com.uce.demo2.modelo.PersonaContadorGenero;
+import com.uce.demo2.modelo.PersonaSencilla;
 
 @Repository
 @Transactional
@@ -180,9 +182,11 @@ public class PersonajpaRepositoryImpl implements IPersonajpaRepository {
 	@Override
 	public List<Persona> busquedaDinamica(String nombre, String apellido, String genero) {
 		
-	    CriteriaBuilder myCriteria = this.entityManager.getCriteriaBuilder();
+	    CriteriaBuilder myCriteria = this.entityManager.getCriteriaBuilder(); //constuctor de qurery
 	    CriteriaQuery<Persona> myQuery = myCriteria.createQuery(Persona.class);
 	    Root<Persona> myTable= myQuery.from(Persona.class);
+	    
+	    
 	    Predicate predicateNombre = myCriteria.equal(myTable.get("nombre"), nombre);// (nombre de la entidad, nombre de parametro)
 	    Predicate predicateApellido = myCriteria.equal(myTable.get("apellido"), apellido);// (nombre de la entidad, nombre de parametro)
 	    Predicate predicateGenero = myCriteria.equal(myTable.get("genero"), genero);// (nombre de la entidad, nombre de parametro)
@@ -191,7 +195,6 @@ public class PersonajpaRepositoryImpl implements IPersonajpaRepository {
 	    Predicate myPredicateFinal =null;
 
 	    if ( genero.equals("M")) {
-	        //Predicate predicateFecha = myCriteria.equal(myTable.get("cedula"),"cedula"); como ejemplso se puede añadir mas condiciones despues
 	        myPredicateFinal = myCriteria.or(predicateNombre,predicateApellido);
 	        myPredicateFinal = myCriteria.and(myPredicateFinal,predicateGenero);
 	    }else if (genero.equals("F")) {
@@ -206,4 +209,28 @@ public class PersonajpaRepositoryImpl implements IPersonajpaRepository {
 	    return myQueryFinal.getResultList();
 	    }
 
+//-----------------------------------------------------------------------------------------	
+	@Override
+	public List<PersonaSencilla> buscarPorApellidoPersonaS(String apellido) {
+		// TODO Auto-generated method stub
+		TypedQuery<PersonaSencilla> myQuery = this.entityManager.createQuery(
+							"SELECT NEW com.uce.demo2.modelo.PersonaSencilla(p.nombre, p.apellido) FROM Persona p WHERE p.apellido = :datoApellido",PersonaSencilla.class);
+		myQuery.setParameter("datoApellido", apellido);
+		return myQuery.getResultList();
+	}
+//-----------------------------	
+
+	@Override
+	public List<PersonaContadorGenero> buscarCantidadPorGenero() {
+		TypedQuery<PersonaContadorGenero> myQuery = this.entityManager.createQuery(
+							"SELECT NEW com.uce.demo2.modelo.PersonaContadorGenero(p.genero, COUNT(p.genero)) FROM Persona p GROUP BY p.genero",PersonaContadorGenero.class);
+		return myQuery.getResultList();
+	}
+	
+	
+	
+	
+	
+	
+	
 }
