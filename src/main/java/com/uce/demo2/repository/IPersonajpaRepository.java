@@ -5,7 +5,7 @@ import java.util.List;
 import com.uce.demo2.modelo.Persona;
 import com.uce.demo2.modelo.PersonaContadorGenero;
 import com.uce.demo2.modelo.PersonaSencilla;
-import com.uce.demo2.to.PersonaTo;
+
 
 public interface IPersonajpaRepository {
 	

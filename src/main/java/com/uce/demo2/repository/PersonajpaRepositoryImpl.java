@@ -98,8 +98,7 @@ public class PersonajpaRepositoryImpl implements IPersonajpaRepository {
 	public Persona buscarPorCedulaNamed(String cedula) {
 
 		Query myQuery = this.entityManager.createNamedQuery("Persona.buscarPorCedula");// namedQuiery q trabaja con un
-																						// Query
-		myQuery.setParameter("datoCedula", cedula);
+		myQuery.setParameter("datoCedula", cedula);										// Query
 		return (Persona) myQuery.getSingleResult();
 	}
 

@@ -1,7 +1,7 @@
 package com.uce.demo2;
 
 
-import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,10 +10,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.demo2.modelo.Ciudadano;
-import com.uce.demo2.modelo.Empleado;
-import com.uce.demo2.service.ICiudadanoJpaService;
-import com.uce.demo2.service.IEmpleadoJpaService;
+import com.uce.demo2.tarea22.modelo.Ciudadano22;
+import com.uce.demo2.tarea22.modelo.Pasaporte;
+import com.uce.demo2.tarea22.service.ICiudadano22JpaService;
 
 
 @SpringBootApplication
@@ -22,10 +21,8 @@ public class ProyectoU2AcApplication implements CommandLineRunner{
 	Logger Log = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 	
 	@Autowired
-	private ICiudadanoJpaService ciudadanoJpaService;
-	@Autowired
-	private IEmpleadoJpaService empleadoJpaService;
-	
+	private ICiudadano22JpaService ciudadanoJpaService;
+		
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU2AcApplication.class, args);
 		
@@ -33,20 +30,30 @@ public class ProyectoU2AcApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-
-		Ciudadano c1 = new Ciudadano();
-		c1.setNombre("Mike");
-		c1.setApellido("Wasauski");
 		
-	    Empleado e1 = new Empleado();
-	    e1.setCodigoIess("1234");
-	    e1.setSalario(new BigDecimal(100));
-	    e1.setCiudadano1(c1);
-
-	    //ciu1.setEmpleado(empl1);
+		Ciudadano22 c1 = new Ciudadano22();
+		c1.setCedula("1788458446");
+		c1.setApellido("Maldonado");
+		c1.setNombre("Teodoro");
+		c1.setFecha(LocalDate.of(1999, 1, 22));
 		
+		
+		Pasaporte p1 = new Pasaporte();
+		p1.setNumero("_019");
+		p1.setCiudadano1(c1);
+		p1.setfEmision(LocalDate.now());
+		p1.setfCaducidad(LocalDate.of(2026, 9, 15));
+		
+
+		c1.setPasaporte(p1);
 		this.ciudadanoJpaService.insertar(c1);
-		this.empleadoJpaService.insertar(e1);
 		
+		Log.info(this.ciudadanoJpaService.buscar("1268435218"));
+		
+		c1.setApellido("Herrera");
+		
+		this.ciudadanoJpaService.actualizar(c1);
+		
+		this.ciudadanoJpaService.eliminar("1268435218");
 	}
 }
