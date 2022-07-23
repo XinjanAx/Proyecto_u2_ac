@@ -1,6 +1,6 @@
 package com.uce.demo2.service;
 
-import com.uce.demo2.modelo.Empleado;
+import com.uce.demo2.modelo.onetoone.Empleado;
 
 public interface IEmpleadoJpaService {
 	

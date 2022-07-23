@@ -1,6 +1,6 @@
 package com.uce.demo2.repository;
 
-import com.uce.demo2.modelo.Ciudadano;
+import com.uce.demo2.modelo.onetoone.Ciudadano;
 
 public interface ICiudadanoJpaRepository {
 	

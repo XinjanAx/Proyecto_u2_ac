@@ -3,7 +3,7 @@ package com.uce.demo2.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.uce.demo2.modelo.Ciudadano;
+import com.uce.demo2.modelo.onetoone.Ciudadano;
 import com.uce.demo2.repository.ICiudadanoJpaRepository;
 
 @Service

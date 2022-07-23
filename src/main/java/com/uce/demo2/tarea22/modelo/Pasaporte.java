@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.uce.demo2.modelo.Ciudadano;
+import com.uce.demo2.modelo.onetoone.Ciudadano;
 
 
 @Entity
@@ -40,8 +40,7 @@ public class Pasaporte {
 
 	@Override
 	public String toString() {
-		return  numero + ", Emision " + fEmision + ", Caducidad" + fCaducidad
-				+ ", " + ciudadano1;
+		return  numero + ", Emision " + fEmision + ", Caducidad" + fCaducidad;
 	}
 	
 //get set	

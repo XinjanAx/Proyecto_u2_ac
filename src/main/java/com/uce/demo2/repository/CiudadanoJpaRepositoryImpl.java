@@ -6,7 +6,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
-import com.uce.demo2.modelo.Ciudadano;
+import com.uce.demo2.modelo.onetoone.Ciudadano;
 
 
 @Repository
