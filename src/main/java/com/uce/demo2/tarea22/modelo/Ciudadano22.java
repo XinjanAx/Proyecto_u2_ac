@@ -41,8 +41,8 @@ public class Ciudadano22 {
 
 	@Override
 	public String toString() {
-		return "\nCiudadano "+ cedula +", "+ nombre + " " + apellido + ", " +  ", fecha: " + fecha
-				+ ", pasaporte " + pasaporte;
+		return "\nCiudadano "+ cedula +", "+ nombre + " " + apellido + ", fecha: " + fecha
+				+ "\n	Pasaporte " + pasaporte;
 	}
 
 

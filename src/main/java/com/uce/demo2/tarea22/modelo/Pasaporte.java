@@ -40,7 +40,7 @@ public class Pasaporte {
 
 	@Override
 	public String toString() {
-		return  numero + ", Emision " + fEmision + ", Caducidad" + fCaducidad;
+		return  numero + ", Emision " + fEmision + ", Caducidad " + fCaducidad;
 	}
 	
 //get set	
