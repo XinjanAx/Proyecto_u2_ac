@@ -1,7 +1,8 @@
 package com.uce.demo2;
 
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,22 +11,25 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.demo2.tarea23.modelo.Ciudad;
-import com.uce.demo2.tarea23.modelo.Pais;
-import com.uce.demo2.tarea23.service.ICiudadService;
-import com.uce.demo2.tarea23.service.IPaisService;
+import com.uce.demo2.modelo.manytomany.Autor;
+import com.uce.demo2.modelo.manytomany.Libro;
+import com.uce.demo2.service.manytomany.IAutorService;
+import com.uce.demo2.service.manytomany.ILibroService;
+
 
 
 @SpringBootApplication
 public class ProyectoU2AcApplication implements CommandLineRunner{
 	
-	Logger Log = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
+	
 	
 	@Autowired
-	private IPaisService paisService;
+	private ILibroService iLibroService;
 	@Autowired
-	private ICiudadService ciudadService;
-		
+	private IAutorService autorService;
+	
+	Logger Log = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
+	
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU2AcApplication.class, args);
 		
@@ -34,22 +38,18 @@ public class ProyectoU2AcApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 			
-		Pais p1 = new Pais();
-		p1.setNombre("Ecuador");
-		p1.setIdioma("Español");
-		p1.setTipo("3erM");
-		p1.setTerritorio("256 370");
+		Libro l1 = new Libro();
+		l1.setTitulo("El Sr de los anillos");
+		l1.setPaginas(1755);
 		
-		this.paisService.insertar(p1);	
+		Autor a1 = new Autor();
+		a1.setNombre("Tolkien");
 		
-		this.paisService.buscarPorNombre("Peru");
+		Set<Autor> autores = new HashSet<>();
+		autores.add(a1);
+		l1.setAutores(autores);
 		
-		this.paisService.actualizar(p1);
-		
-		this.paisService.eliminarPorNombre("Brazil");
-
-
-
+		this.iLibroService.incertarL(l1);
 		
 	}
 }
