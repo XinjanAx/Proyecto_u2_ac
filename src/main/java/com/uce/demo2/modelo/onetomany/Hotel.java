@@ -34,8 +34,8 @@ public class Hotel {
 	public String toString() {
 		return "\nHotel " + nombre + ", direccion: " + direccion;
 	}
-// set get 
 	
+// set get 
 	
 	public String getNombre() {
 		return nombre;

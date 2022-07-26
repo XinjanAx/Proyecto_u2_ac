@@ -11,10 +11,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.demo2.modelo.manytomany.Autor;
-import com.uce.demo2.modelo.manytomany.Libro;
-import com.uce.demo2.service.manytomany.IAutorService;
-import com.uce.demo2.service.manytomany.ILibroService;
+import com.uce.demo2.tarea24.modelo.AutorLibro;
+import com.uce.demo2.tarea24.modelo.AutorT;
+import com.uce.demo2.tarea24.modelo.LibroT;
+import com.uce.demo2.tarea24.service.IAutorTService;
+import com.uce.demo2.tarea24.service.ILibroTService;
 
 
 
@@ -24,9 +25,10 @@ public class ProyectoU2AcApplication implements CommandLineRunner{
 	
 	
 	@Autowired
-	private ILibroService iLibroService;
+	private ILibroTService iLibroService;
 	@Autowired
-	private IAutorService autorService;
+	private IAutorTService autorService;
+
 	
 	Logger Log = LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 	
@@ -38,18 +40,60 @@ public class ProyectoU2AcApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 			
-		Libro l1 = new Libro();
-		l1.setTitulo("El Sr de los anillos");
-		l1.setPaginas(1755);
+		LibroT libro = new LibroT();
+		libro.setTitulo("La bella y la bestia");
+		libro.setPaginas(147);
 		
-		Autor a1 = new Autor();
-		a1.setNombre("Tolkien");
+				AutorLibro al1 =new AutorLibro();
+					
+					AutorT a1 = new AutorT();
+					a1.setNombre("Samuel L.L. Jason");
+					
+				al1.setAutores(a1);	
+				al1.setLibros(libro);
+			
+				AutorLibro al2 =new AutorLibro();
+					AutorT a2 = new AutorT();
+					a2.setNombre("Tolkien");
+				al2.setLibros(libro);
+				al2.setAutores(a2);	
+			
+			Set<AutorLibro> lista1 = new HashSet<>();
+			lista1.add(al1);
+			lista1.add(al2);
+		libro.setAutoresLibrosL(lista1);
+
 		
-		Set<Autor> autores = new HashSet<>();
-		autores.add(a1);
-		l1.setAutores(autores);
+		this.autorService.insertarAutor(a1);
+		this.autorService.insertarAutor(a2);
+		this.iLibroService.insertarLibro(libro);
 		
-		this.iLibroService.incertarL(l1);
+		AutorT autor = new AutorT();
+		autor.setNombre("Julio Verne");
+		
+				AutorLibro al3 =new AutorLibro();
+					LibroT l1 = new LibroT();
+					l1.setTitulo("Viaje a la Luna");
+					l1.setPaginas(339);
+				al3.setAutores(autor);
+				al3.setLibros(l1);
+				
+				AutorLibro al4 =new AutorLibro();
+					LibroT l2 = new LibroT();
+					l2.setTitulo("La vuelta al mundo en 80 dias");
+					l2.setPaginas(339);
+				al3.setAutores(autor);
+				al3.setLibros(l2);
+				
+			Set<AutorLibro> lista2 = new HashSet<>();
+			lista2.add(al3);
+			lista2.add(al4);
+			
+		autor.setAutoresLibrosA(lista2);
+		
+		this.iLibroService.insertarLibro(l1);
+		this.iLibroService.insertarLibro(l2);
+		this.autorService.insertarAutor(autor);
 		
 	}
 }
