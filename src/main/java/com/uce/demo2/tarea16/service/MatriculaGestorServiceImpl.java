@@ -36,6 +36,7 @@ public class MatriculaGestorServiceImpl implements IMatriculaGestorService{
 		// TODO Auto-generated method stub
 		Propietario p = this.propietarioRepository.consultar(cedula);
 		Vehiculo v = this.vehiculoRepository.buscar(placa);
+		
 		String tipo = v.getTipo();
 		BigDecimal valorMatricula;
 		if (tipo.equals("P")) {
@@ -48,10 +49,10 @@ public class MatriculaGestorServiceImpl implements IMatriculaGestorService{
 			valorMatricula =valorMatricula.subtract(valorDescuento);
 		}
 		Matricula matricula = new Matricula();
-		matricula.setFechaMatricula(LocalDateTime.now());
-		matricula.setPopietario(p);
-		matricula.setValorMAtricula(valorMatricula);
-		matricula.setVehiculo(v);
+			matricula.setFechaMatricula(LocalDateTime.now());
+			matricula.setPopietario(p);
+			matricula.setValorMAtricula(valorMatricula);
+			matricula.setVehiculo(v);
 		this.matriculaRepository.crear(matricula);	
 	}
 }

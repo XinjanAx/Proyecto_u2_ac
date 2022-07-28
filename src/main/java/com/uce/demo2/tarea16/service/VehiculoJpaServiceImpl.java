@@ -38,7 +38,4 @@ public class VehiculoJpaServiceImpl implements IVehiculoService{
 		this.vehiculoRepository.actializar(vehiculo);
 		
 	}
-	
-	
-
 }
